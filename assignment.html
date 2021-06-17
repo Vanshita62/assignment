@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Registation Form</title>
+</head>
+<style>
+
+
+form{
+                border: 1px solid black;
+                    padding: 44px;
+                    margin: 0px 30%;
+                    border-radius: 10%;
+                    background-color: #b5c5dca6;
+                    box-shadow: 10px 20px #888888;
+            }
+
+input {
+  width: 50%;
+  padding: 10px;
+  margin: 5px 0 5px 0;
+  border: 2px #ac80e6;
+  border-radius: 4px;
+  background: #f1f1f1;
+}
+
+input:focus {
+  background-color: #ddd;
+  outline: none;
+}
+input[type=button], input[type=submit], input[type=reset] {
+  background-color: #2b54a0b5;
+  border: none;
+  color: black;
+  padding: 16px 32px;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+input[type=button]:focus, input[type=submit]:focus, input[type=reset]:focus {
+  background-color: #2f5eb5;
+  border: none;
+  color: black;
+  padding: 16px 32px;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+img{
+    width: 25px;
+    height: 25px;
+}
+
+</style>
+ 
+<script>  
+function validateform(){  
+var name=document.myform.name.value;  
+var password=document.myform.password.value;  
+var contact=document.myform.contact.value;
+var patt=new RegExp('^[0-9]*$');
+var x=document.myform.email.value;  
+var atposition=x.indexOf("@");  
+var dotposition=x.lastIndexOf(".");  
+  
+if (name==null || name==""){  
+ 
+  document.getElementById("namelocation").innerHTML="<img  src='cross.gif'/>Please enter your name.";
+  return false;  
+}
+else{
+    document.getElementById("namelocation").innerHTML="<img src='tick.gif'/>Thank you for entering your Name.";
+}
+if(password.length<6){  
+ 
+  document.getElementById("passwordlocation").innerHTML="<img  src='cross.gif'/>Password must be at least 6 characters long.";
+  return false;  
+  }  
+  else{
+    document.getElementById("passwordlocation").innerHTML="<img src='tick.gif'/>Thank you for entering your Password";
+}
+ if(!patt.test(contact)){
+               
+                document.getElementById("contactlocation").innerHTML="<img  src='cross.gif'/>Contact Number should be a digit(0-9)!";
+               return false; 
+            }
+            else if(contact.length > 10 || contact.length <10){
+              
+                 document.getElementById("contactlocation").innerHTML="<img  src='cross.gif'/>Contact Number must be 10 digit number!";
+                return false;
+            }
+            else{
+    document.getElementById("contactlocation").innerHTML="<img src='tick.gif'/>Thank you for entering your Contact Number.";
+}
+if (atposition<1 || dotposition<atposition+2 || dotposition+2>=x.length){  
+  
+  
+  document.getElementById("emaillocation").innerHTML="<img  src='cross.gif'/>Please enter a valid e-mail address \n atpostion:"+atposition+"\n dotposition:"+dotposition;
+  return false;  
+  }  
+  else{
+    document.getElementById("emaillocation").innerHTML="<img src='tick.gif'/>Thank you for entering your Email Id.";
+}
+}       
+</script>  
+
+<body background="background.jpg"> 
+<pre>
+<form name="myform" method="post" action="valid_user.html" onsubmit="return validateform()" >  
+<center><image src="register.png"style="width: 156px; height: 63px;"/>
+<input type="text" name="name" placeholder="Name:"><br/>  
+<span id="namelocation"></span><br>
+<input type="password" name="password" placeholder="Password:"><br/> 
+<span id="passwordlocation" ></span><br>
+<input type="text" name="contact" placeholder="Contact Number:"><br/> 
+<span id="contactlocation"></span><br>
+<input type="text" name="email" placeholder="Email Id:"><br/>
+<span id="emaillocation"></span><br>
+<input type="submit" value="Register">  
+</form>  </pre>
+</body>
+</html>
